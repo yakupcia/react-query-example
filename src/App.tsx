@@ -5,11 +5,11 @@ import './App.css';
 import { useMutation, useQuery } from 'react-query';
 
 function App() {
-  const { data, isLoading } = useQuery('city', async () => {
-    const response = await fetch('http://localhost:2000/api/city');
+  const { data, isLoading } = useQuery('posts', async () => {
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
     const jsonData = await response.json();
-    // console.log(jsonData);
-    return jsonData.data;
+    console.log(jsonData);
+    return jsonData.map((value: typeof Array)=>value?.title);
   });
 
   const mutation = useMutation(async (newData: object) => {
